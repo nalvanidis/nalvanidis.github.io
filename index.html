@@ -1,28 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="el">
 <head>
-    <title>Το Πορτφόλιο μου</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digi Photos | Portfolio</title>
     <style>
-        /* Αυτό το κομμάτι κάνει τις φωτογραφίες να φαίνονται όμορφα */
-        body { font-family: sans-serif; text-align: center; background-color: #f4f4f4; }
-        .gallery img { width: 80%; max-width: 800px; margin: 20px; border: 10px solid white; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        /* Γενικό Στυλ */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #0f0f0f; /* Σκούρο φόντο για να "γράφουν" οι φωτό */
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: 200;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        /* Το Πλέγμα (Grid) των φωτογραφιών */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Αυτόματα στήλες */
+            gap: 15px; /* Κενό ανάμεσα στις φωτό */
+            padding: 15px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            overflow: hidden; /* Κρύβει ό,τι περισσεύει στο zoom */
+            background-color: #1a1a1a;
+            aspect-ratio: 3 / 2; /* Κάνει όλα τα κουτάκια ομοιόμορφα */
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Γεμίζει το κουτάκι χωρίς να παραμορφώνει */
+            transition: transform 0.5s ease; /* Ομαλό εφέ */
+            cursor: pointer;
+        }
+
+        /* Εφέ όταν περνάς το ποντίκι από πάνω (Hover) */
+        .gallery img:hover {
+            transform: scale(1.05); /* Μικρό zoom in */
+            filter: brightness(1.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.8rem;
+            color: #666;
+        }
     </style>
 </head>
 <body>
 
-    <h1>Digi photos</h1>
+    <header>
+        <h1>Digi Photos</h1>
+        <p style="color: #888;">Capture the moment</p>
+    </header>
 
     <div class="gallery">
-      <img src="photos for portfolio/photo1.jpg">
-        <img src="photos for portfolio/photo2.jpg">
-        <img src="photos for portfolio/photo3.jpg">
-        <img src="photos for portfolio/photo4.jpg">
-        <img src="photos for portfolio/photo5.jpg">
-        <img src="photos for portfolio/photo6.jpg">
-        <img src="photos for portfolio/photo7.jpg">
-        <img src="photos for portfolio/photo8.jpg">
-        <img src="photos for portfolio/photo9.jpg">
+        <div class="gallery-item"><img src="photos for portfolio/photo1.jpg"></div>
+        <div class="gallery-item"><img src="photos for portfolio/photo2.jpg"></div>
+        <div class="gallery-item"><img src="photos for portfolio/photo3.jpg"></div>
+        <div class="gallery-item"><img src="photos for portfolio/photo4.jpg"></div>
+        <div class="gallery-item"><img src="photos for portfolio/photo5.jpg"></div>
+        <div class="gallery-item"><img src="photos for portfolio/photo6.jpg"></div>
+        <div class="gallery-item"><img src="photos for portfolio/photo7.jpg"></div>
+        <div class="gallery-item"><img src="photos for portfolio/photo8.jpg"></div>
+        <div class="gallery-item"><img src="photos for portfolio/photo9.jpg"></div>
     </div>
+
+    <footer>
+        &copy; 2026 Digi Photos. Built with GitHub Pages.
+    </footer>
 
 </body>
 </html>
