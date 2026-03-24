@@ -5,108 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nikolas Alvanidis | Portfolio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Fredericka+the+Great&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            --bg-color: #0a0a0a;
-            --text-color: #f5f5f5;
-            --accent-color: #888;
-        }
-
         body {
+            background-color: #ffffff; /* Λευκό φόντο */
+            color: #1a1a1a; /* Σχεδόν μαύρα γράμματα */
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
             margin: 0;
-            line-height: 1.6;
+            padding: 0;
         }
 
+        /* Το πάνω μέρος (Header) */
         header {
-            padding: 80px 20px 40px;
             text-align: center;
+            padding: 60px 20px 20px;
+        }
+
+        .motto {
+            font-size: 0.9rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 10px;
+            color: #333;
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-family: 'Fredericka the Great', cursive; /* Η "sketch" γραμματοσειρά */
+            font-size: 5rem;
             margin: 0;
+            font-weight: normal;
             text-transform: uppercase;
         }
 
-        .subtitle {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            color: var(--accent-color);
-            font-size: 1.2rem;
-            margin-top: 10px;
+        /* Μενού Πλοήγησης (Navigation) */
+        nav {
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            margin: 30px auto;
+            max-width: 1200px;
+            padding: 15px 0;
         }
 
-        /* Στυλ για τις Κατηγορίες */
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 100px; /* Απόσταση ανάμεσα στα μενού */
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #888;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #000;
+        }
+
+        /* Κατηγορίες Φωτογραφιών */
         .category-section {
             max-width: 1400px;
-            margin: 60px auto;
+            margin: 40px auto;
             padding: 0 20px;
         }
 
         .category-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: baseline;
-            gap: 15px;
-        }
-
-        .category-title span {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            text-align: left;
+            font-style: italic;
         }
 
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 20px;
+            gap: 15px;
         }
 
         .gallery-item {
-            position: relative;
             overflow: hidden;
-            background-color: #111;
-            aspect-ratio: 16 / 10;
+            background-color: #f9f9f9;
         }
 
         .gallery img {
             width: 100%;
             height: 100%;
+            display: block;
             object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            filter: grayscale(20%); /* Δίνει μια πιο καλλιτεχνική νότα */
+            transition: opacity 0.4s;
         }
 
         .gallery img:hover {
-            transform: scale(1.03);
-            filter: grayscale(0%);
+            opacity: 0.8; /* Απαλό εφέ στο λευκό φόντο */
         }
 
         footer {
             text-align: center;
-            padding: 60px 20px;
-            color: #444;
+            padding: 80px 20px;
             font-size: 0.7rem;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            color: #aaa;
+            text-transform: uppercase;
         }
 
-        /* Mobile Fixes */
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
+        /* Για κινητά */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            nav ul { gap: 30px; }
             .gallery { grid-template-columns: 1fr; }
         }
     </style>
@@ -114,14 +127,20 @@
 <body>
 
     <header>
+        <div class="motto">Ambition is the first step towards</div>
         <h1>Digital Photos</h1>
-        <div class="subtitle">by Nikolas Alvanidis</div>
     </header>
 
+    <nav>
+        <ul>
+            <li><a href="#">Kraków</a></li>
+            <li><a href="#">Series</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+
     <section class="category-section">
-        <div class="category-title">
-            Kraków <span>Poland Series</span>
-        </div>
+        <div class="category-title">Kraków, Poland</div>
         
         <div class="gallery">
             <div class="gallery-item"><img src="photos for portfolio/photo1.jpg"></div>
@@ -137,7 +156,7 @@
     </section>
 
     <footer>
-        NIKOLAS ALVANIDIS &copy; 2026 | ALL RIGHTS RESERVED
+        &copy; 2026 Nikolas Alvanidis
     </footer>
 
 </body>
