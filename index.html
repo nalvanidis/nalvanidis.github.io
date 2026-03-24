@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nikolas Alvanidis | Portfolio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Fredericka+the+Great&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Fredericka+the+Great&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -19,7 +19,7 @@
         /* Το πάνω μέρος (Header) */
         header {
             text-align: center;
-            padding: 60px 20px 20px;
+            padding: 80px 20px 40px;
         }
 
         .motto {
@@ -39,35 +39,7 @@
             text-transform: uppercase;
         }
 
-        /* Μενού Πλοήγησης (Navigation) */
-        nav {
-            border-top: 1px solid #e0e0e0;
-            border-bottom: 1px solid #e0e0e0;
-            margin: 30px auto;
-            max-width: 1200px;
-            padding: 15px 0;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 100px; /* Απόσταση ανάμεσα στα μενού */
-            margin: 0;
-            padding: 0;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #888;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #000;
-        }
+        /* --- Η μπάρα μενού NAV αφαιρέθηκε από εδώ --- */
 
         /* Κατηγορίες Φωτογραφιών */
         .category-section {
@@ -77,11 +49,14 @@
         }
 
         .category-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
             margin-bottom: 25px;
-            text-align: left;
-            font-style: italic;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
         }
 
         .gallery {
@@ -100,7 +75,8 @@
             height: 100%;
             display: block;
             object-fit: cover;
-            transition: opacity 0.4s;
+            transition: opacity 0.3s;
+            cursor: pointer; /* Δείχνει ότι είναιclickable */
         }
 
         .gallery img:hover {
@@ -116,10 +92,53 @@
             text-transform: uppercase;
         }
 
+        /* --- LIGHTBOX (IMAGE EXPAND) CSS --- */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.95); /* Λευκό-διαφανές φόντο */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; /* Κρυμμένο αρχικά */
+            visibility: hidden;
+            transition: opacity 0.4s ease-out, visibility 0.4s;
+            z-index: 1000; /* Πάνω από όλα */
+        }
+
+        #lightbox.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #lightbox-image {
+            max-width: 90%;
+            max-height: 90%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 2rem;
+            color: #333;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        #lightbox-close:hover {
+            color: #000;
+        }
+
         /* Για κινητά */
         @media (max-width: 768px) {
             h1 { font-size: 3rem; }
-            nav ul { gap: 30px; }
             .gallery { grid-template-columns: 1fr; }
         }
     </style>
@@ -127,17 +146,9 @@
 <body>
 
     <header>
-        <div class="motto">Ambition is the first step towards</div>
+        <div class="motto">shots by Nikolas Alvanidis</div>
         <h1>Digital Photos</h1>
     </header>
-
-    <nav>
-        <ul>
-            <li><a href="#">Kraków</a></li>
-            <li><a href="#">Series</a></li>
-            <li><a href="#">About</a></li>
-        </ul>
-    </nav>
 
     <section class="category-section">
         <div class="category-title">Kraków, Poland</div>
@@ -158,6 +169,46 @@
     <footer>
         &copy; NIKOLAS ALVANIDIS &copy; 2026 | ALL RIGHTS RESERVED
     </footer>
+
+    <div id="lightbox">
+        <button id="lightbox-close">&times;</button>
+        <img id="lightbox-image" src="" alt="Expanded Photo">
+    </div>
+
+    <script>
+        const galleryImages = document.querySelectorAll('.gallery img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        galleryImages.forEach(image => {
+            image.addEventListener('click', () => {
+                lightboxImage.src = image.src; // Αντιγράφει το src της εικόνας
+                lightbox.classList.add('visible'); // Εμφανίζει το lightbox
+                document.body.style.overflow = 'hidden'; // Αποτρέπει το scrolling στη σελίδα
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('visible'); // Κρύβει το lightbox
+            document.body.style.overflow = ''; // Επαναφέρει το scrolling
+        };
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (event) => {
+            // Κλείνει αν κάνεις κλικ έξω από την εικόνα
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Κλείνει με το Escape key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && lightbox.classList.contains('visible')) {
+                closeLightbox();
+            }
+        });
+    </script>
 
 </body>
 </html>
