@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shots by Nikos Alvanidis</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -15,13 +11,13 @@
             --fasianos-red: #ba3826;
             --fasianos-ochre: #d69424;
             --bg-parchment: #f9f6ee;
-            --main-text: #22201e; /* Ενιαίο μελανί χρώμα για όλα τα γράμματα */
+            --main-text: #22201e;
         }
 
         body {
             background-color: var(--bg-parchment);
             color: var(--main-text);
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
             margin: 0;
             padding: 0;
             position: relative;
@@ -136,12 +132,12 @@
 
         header {
             text-align: center;
-            padding: 90px 20px 45px;
+            padding: 95px 20px 45px;
         }
 
         h1 {
-            font-size: 1.5rem;
-            font-weight: 500;
+            font-size: 1.6rem;
+            font-weight: 600;
             letter-spacing: 5px;
             text-transform: uppercase;
             color: var(--main-text);
@@ -156,8 +152,8 @@
         }
 
         .category-title {
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.3rem;
+            font-weight: bold;
             color: var(--main-text);
             border-bottom: 1.5px solid rgba(34, 32, 30, 0.2);
             padding-bottom: 12px;
@@ -169,8 +165,8 @@
         }
 
         .category-title span {
-            font-size: 0.9rem;
-            font-weight: 400;
+            font-size: 0.95rem;
+            font-weight: normal;
             color: var(--main-text);
             opacity: 0.7;
             letter-spacing: 0.5px;
@@ -215,8 +211,8 @@
         footer {
             text-align: center;
             padding: 90px 20px 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
+            font-size: 0.85rem;
+            font-weight: normal;
             letter-spacing: 3px;
             color: var(--main-text);
             text-transform: uppercase;
@@ -266,8 +262,8 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 1.2rem; letter-spacing: 3px; }
-            .category-title { font-size: 1.1rem; flex-direction: column; gap: 4px; }
+            h1 { font-size: 1.25rem; letter-spacing: 3px; }
+            .category-title { font-size: 1.15rem; flex-direction: column; gap: 4px; }
             .gallery { grid-template-columns: 1fr; gap: 24px; }
             .gallery-item { transform: none !important; }
             .doodle { display: none; }
@@ -383,7 +379,6 @@
     </div>
 
     <script>
-        /* Lightbox functionality */
         const galleryImages = document.querySelectorAll('.gallery img');
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightbox-image');
@@ -405,10 +400,6 @@
         lightboxClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-    </script>
-
-</body>
-</html>
     </script>
 
 </body>
